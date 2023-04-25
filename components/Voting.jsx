@@ -117,7 +117,10 @@ useEffect(() => {
         }
 
 
-       <h2 className='text-center my-5'>Pocet hlasov: {voted[0] + voted[1]} </h2>
+       {
+        loading ? <p className='text-center'>...</p> : 
+        <h2 className='text-center my-5'>Pocet hlasov: {voted[0] + voted[1]} </h2>
+       }
         
       <ToastContainer position='top-center' limit={1} />
 
