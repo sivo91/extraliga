@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
-"use strict"
-'use client'
+
 
 import React, { useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
