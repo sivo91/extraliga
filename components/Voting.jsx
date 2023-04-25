@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import Link from 'next/link';
+import { FiExternalLink } from "react-icons/fi";
 
 
 
@@ -61,9 +62,9 @@ useEffect(() => {
      fetchTeams()
 
      if(id === '64474e21c50211c08c127e02'){
-      toast.success('Dakujeme za tvoj hlas!')
+      toast.success('Hlas pre domacich.')
      } else if(id === '64474e53c50211c08c127e03'){
-      toast.success('Tvoj hlas si dal Tygrom')
+      toast.success('Hlas pre hosti.')
      }
 
   } catch (error) {
@@ -74,7 +75,7 @@ useEffect(() => {
   return (
     <>
        <h1 className='text-center mt-5'>Kto postupi do Extraligy?</h1>
-       <h3 className='text-center mb-3'>Hlasuj !</h3>
+       <h3 className='text-center mb-5'>Hlasuj !</h3>
 
        <div className='box p-2'>
 
@@ -104,7 +105,7 @@ useEffect(() => {
        </div>
         
         {
-        loading ? <p className='text-center'>...</p> :
+        loading ? <p className='text-center'>Loading...</p> :
          (
           <>
             <div className='box-percentage'>
@@ -123,11 +124,19 @@ useEffect(() => {
       <Link href={'https://www.charismawebdevelopment.com/'} 
             style={{ textDecoration: 'none' }}>
          
-         <p className='text-center link' >CharisMa web development</p>
+         <p className='text-center link' >
+          <FiExternalLink  className='icon'/>
+          CharisMa web development
+         </p>
       </Link>
 
        <style>{`
-         
+          
+          .icon {
+            position: relative;
+            top: -3px;
+            margin-right: 5px;
+          }
          
           .link {
             color: black;
