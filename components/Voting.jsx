@@ -109,8 +109,8 @@ useEffect(() => {
          (
           <>
             <div className='box-percentage'>
-              <h4>{ Number(voted[0] / Number(total) * 100).toFixed(2) }%</h4>
-              <h4>{ Number(voted[1] / Number(total) * 100).toFixed(2) }%</h4>
+              <h4>{ Number(voted[0] / Number(total) * 100).toFixed(0) }%</h4>
+              <h4>{ Number(voted[1] / Number(total) * 100).toFixed(0) }%</h4>
             </div>
           </>
          )
