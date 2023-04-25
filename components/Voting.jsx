@@ -84,16 +84,16 @@ useEffect(() => {
              {
                teams.map(item => (
                 <div  key={item.id} style={{width: '125px'}}>
-                  <img src={item.img} alt={item.name} />
+                 {/*  <img src={item.img} className='img' alt={item.name} /> */}
                    
                   <button 
-                    className='btn btn-primary rounded-0 shadow' 
+                    className='btn btn-primary rounded-0 w-100 shadow' 
                     disabled={disable}
                     onClick={ () => handleUpdate(item._id)}  >
                     {item.name}
                   </button>
-                  <br /><br /><br />
-                 {/*  <h1 className='text-center'>{item.vote}</h1> */}
+                  <br /><br />
+                
               </div>
               ))
              }
@@ -127,6 +127,8 @@ useEffect(() => {
       </Link>
 
        <style>{`
+         
+         
           .link {
             color: black;
             font-size: 20px;
@@ -136,8 +138,7 @@ useEffect(() => {
           position: relative;
           width: 350px;
           margin: 0 auto;
-          border: 1px solid black;
-          border-bottom: none;
+          
           display: flex;
           justify-content: space-around;
          }
@@ -146,8 +147,7 @@ useEffect(() => {
           position: relative;
           width: 350px;
           margin: 0 auto;
-          border: 1px solid black;
-          border-top: none;
+         
           display: flex;
           justify-content: space-around;
          }
