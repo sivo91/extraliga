@@ -103,10 +103,17 @@ useEffect(() => {
         }
        </div>
         
-        <div className='box-percentage'>
-          <h4>{ Number(voted[0] / Number(total) * 100).toFixed(2) }%</h4>
-          <h4>{ Number(voted[1] / Number(total) * 100).toFixed(2) }%</h4>
-        </div>
+        {
+        loading ? <p className='text-center'>...</p> :
+         (
+          <>
+            <div className='box-percentage'>
+              <h4>{ Number(voted[0] / Number(total) * 100).toFixed(2) }%</h4>
+              <h4>{ Number(voted[1] / Number(total) * 100).toFixed(2) }%</h4>
+            </div>
+          </>
+         )
+        }
 
 
        <h2 className='text-center my-5'>Pocet hlasov: {voted[0] + voted[1]} </h2>
