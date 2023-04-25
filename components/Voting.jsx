@@ -59,12 +59,12 @@ useEffect(() => {
     await axios.put(`/api/team/${id}/updateVote`, {data: {id}} )
     
     setDisable(true)
-     fetchTeams()
+    fetchTeams()
 
      if(id === '64474e21c50211c08c127e02'){
-      toast.success('Hlas pre domacich.')
+      toast.success('Domaci ziskali dalsi hlas.')
      } else if(id === '64474e53c50211c08c127e03'){
-      toast.success('Hlas pre hosti.')
+      toast.success('Hostial ziskalil dalsi hlas.')
      }
 
   } catch (error) {
@@ -105,7 +105,7 @@ useEffect(() => {
        </div>
         
         {
-        loading ? <p className='text-center'>Loading...</p> :
+        loading ? <p className='text-center'>...</p> :
          (
           <>
             <div className='box-percentage'>
