@@ -10,8 +10,8 @@ const Handler = async (req, res) => {
   await db.connect();
   const team = await Team.find({});
   await db.disconnect();
-
-  res.send(team);
+  
+  res.status(200).send(team);
 };
 
 export default Handler
