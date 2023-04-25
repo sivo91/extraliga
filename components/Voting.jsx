@@ -18,6 +18,7 @@ const Voting = () => {
 
 
 
+
  const fetchTeams = async () => {
     try {
        setLoading(true)
