@@ -11,17 +11,23 @@ import { FiExternalLink } from "react-icons/fi";
 
 
 
+
 const Voting = () => {
 
  const [teams, setTeams] = useState([])
  const [loading, setLoading] = useState(false)
- const [disable, setDisable] = useState(false)
+ const [disable, setDisable] = useState(true)
  const [voted, setVoted] = useState(0)
  const [total, setTotal] = useState(0)
 
 
+const za = Number(voted[0] / Number(total) * 100).toFixed(0) 
+const hu = Number(voted[1] / Number(total) * 100).toFixed(0)
 
-console.log(total)
+
+
+
+//console.log(total)
 
  const fetchTeams = async () => {
     try {
@@ -53,7 +59,7 @@ useEffect(() => {
 
  const handleUpdate = async (id) => {
 
-  console.log(typeof id, id)
+ // console.log(typeof id, id)
 
   try {
     await axios.put(`/api/team/${id}/updateVote`, {data: {id}} )
@@ -75,7 +81,7 @@ useEffect(() => {
   return (
     <>
        <h1 className='text-center mt-5'>Kto postupi do Extraligy?</h1>
-       <h3 className='text-center mb-5'>Hlasuj !</h3>
+       <h3 className='text-center text-danger my-3'>Hlasovanie skoncilo !</h3>
 
        <div className='box p-2'>
 
@@ -88,7 +94,7 @@ useEffect(() => {
                  {/*  <img src={item.img} className='img' alt={item.name} /> */}
                    
                   <button 
-                    className='btn btn-primary rounded-0 w-100 shadow' 
+                    className='btn btn-primary rounded-0 w-100 shadow blocked' 
                     disabled={disable}
                     onClick={ () => handleUpdate(item._id)}  >
                     {item.name}
@@ -109,22 +115,26 @@ useEffect(() => {
          (
           <>
             <div className='box-percentage'>
-              <h4>{ Number(voted[0] / Number(total) * 100).toFixed(0) }%</h4>
-              <h4>{ Number(voted[1] / Number(total) * 100).toFixed(0) }%</h4>
+              <h4>{ za }%</h4>
+              <h4>{ hu }%</h4>
             </div>
           </>
          )
         }
+
+          
 
 
        {
         loading ? <p className='text-center'>...</p> : 
         <h2 className='text-center my-5'>Pocet hlasov: {voted[0] + voted[1]} </h2>
        }
+
+
         
       <ToastContainer position='top-center' limit={1} />
 
-      <Link href={'https://www.charismawebdevelopment.com/'} 
+      <Link href={'https://www.charismawebdevelopment.com/' } target="_blank"
             style={{ textDecoration: 'none' }}>
          
          <p className='text-center link' >
@@ -134,7 +144,11 @@ useEffect(() => {
       </Link>
 
        <style>{`
-          
+
+          .graf {
+            position: relative;
+            margin: 0 auto;
+          }
           .icon {
             position: relative;
             top: -3px;
@@ -144,6 +158,10 @@ useEffect(() => {
           .link {
             color: black;
             font-size: 20px;
+          }
+
+          .blocked {
+            cursor: not-allowed;
           }
 
          .box {
