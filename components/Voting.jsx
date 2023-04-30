@@ -9,6 +9,11 @@ import axios from 'axios';
 import Link from 'next/link';
 import { FiExternalLink } from "react-icons/fi";
 
+//import  Chart  from "react-apexcharts";
+
+import dynamic from 'next/dynamic'
+const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
+
 
 
 
@@ -16,20 +21,27 @@ const Voting = () => {
 
  const [teams, setTeams] = useState([])
  const [loading, setLoading] = useState(false)
- const [disable, setDisable] = useState(true)
+ const [disable, setDisable] = useState(false)
  const [voted, setVoted] = useState(0)
  const [total, setTotal] = useState(0)
+ const [grafZA, setGrafZA] = useState([])
+ const [grafHU, setGrafHU] = useState([])
 
 
 const za = Number(voted[0] / Number(total) * 100).toFixed(0) 
 const hu = Number(voted[1] / Number(total) * 100).toFixed(0)
 
 
-
+console.log('za gr',grafZA)
+console.log('hu gr',grafHU)
 
 //console.log(total)
 
  const fetchTeams = async () => {
+
+  const grafZ = []
+  const grafH = []
+
     try {
        setLoading(true)
        const res = await axios('/api/getTeam')
@@ -38,6 +50,14 @@ const hu = Number(voted[1] / Number(total) * 100).toFixed(0)
        setTeams(mongo)
        setVoted(mongo.map(item => item.vote))
        setLoading(false)
+
+       for(let i = 0; i < mongo.length; i++) {
+        grafZ.push(Number(mongo[i].vote))
+        grafH.push(Number(mongo[i].vote))
+       }
+
+     setGrafZA(grafZ)  
+     setGrafHU(grafH)
       
     } catch (error) {
        console.log(error)
@@ -67,9 +87,9 @@ useEffect(() => {
     setDisable(true)
     fetchTeams()
 
-     if(id === '64474e21c50211c08c127e02'){
+     if(id === '644e8f3a938c9c9f481dc46d'){
       toast.success('Domaci ziskali dalsi hlas.')
-     } else if(id === '64474e53c50211c08c127e03'){
+     } else if(id === '644e8f6d938c9c9f481dc46e'){
       toast.success('Hostial ziskalil dalsi hlas.')
      }
 
@@ -90,7 +110,7 @@ useEffect(() => {
             <>
              {
                teams.map(item => (
-                <div  key={item.id} style={{width: '125px'}}>
+                <div  key={item._id} style={{width: '125px'}}>
                  {/*  <img src={item.img} className='img' alt={item.name} /> */}
                    
                   <button 
@@ -122,6 +142,40 @@ useEffect(() => {
          )
         }
 
+
+
+        {
+        loading ? <p className='text-center'>...</p> :
+         (
+          <>
+           <div className='box-percentage'>
+            <Chart 
+                type="pie"
+                width={375}
+                height={375}
+
+                series={  grafHU }  // domaci , hostia              
+
+                options={{
+                        title:{ text:"Data Visualization"
+                        } , 
+                       noData:{text:"Empty Data"},                        
+                       colors:["#4662a6","#06ba54"],
+                      labels: ['Domaci', 'Hostia' ]                
+
+                 }}   
+                >           
+                </Chart>
+            </div>  
+          </>
+         )
+        }
+
+
+
+
+        
+                
           
 
 
