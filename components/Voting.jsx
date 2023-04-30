@@ -21,7 +21,7 @@ const Voting = () => {
 
  const [teams, setTeams] = useState([])
  const [loading, setLoading] = useState(false)
- const [disable, setDisable] = useState(false)
+ const [disable, setDisable] = useState(true)
  const [voted, setVoted] = useState(0)
  const [total, setTotal] = useState(0)
  const [grafZA, setGrafZA] = useState([])
@@ -174,11 +174,6 @@ useEffect(() => {
 
 
 
-        
-                
-          
-
-
        {
         loading ? <p className='text-center'>...</p> : 
         <h2 className='text-center my-5'>Pocet hlasov: {voted[0] + voted[1]} </h2>
@@ -197,7 +192,23 @@ useEffect(() => {
          </p>
       </Link>
 
+      <div className='box-charisma mb-5'>
+          <img src="./charisma.png" alt="charisma" />
+      </div>
+
        <style>{`
+
+          .box-charisma {
+            position: relative;
+            width: 100px;
+            margin:0 auto;
+          }
+
+          .box-charisma > img {
+            position: relative;
+            width: 100%;
+            object-fit: cover;
+          }
 
           .graf {
             position: relative;
