@@ -160,7 +160,7 @@ useEffect(() => {
             font-size: 20px;
           }
 
-          .blocked {
+          .blocked:hover {
             cursor: not-allowed;
           }
 
